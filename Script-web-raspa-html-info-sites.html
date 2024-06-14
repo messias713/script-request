@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CNN News Scraper</title>
+  <script>
+    // Define a URL base do site da CNN
+    const base_url = "https://edition.cnn.com";
+
+    // Define os parâmetros de pesquisa padrão
+    let query = "climate change";
+    let start_date = "20230101";
+    let end_date = "20230331";
+
+    // Função para extrair o conteúdo do artigo
+    async function extractArticleContent(url) {
+      try {
+        const response = await fetch(url);
+        const html = await response.text();
+
+        // Utilize uma biblioteca de scraping como Cheerio para analisar o HTML
+        const $ = Cheerio.load(html);
+
+        // Obtenha o título do artigo
+        const title = $('h1.pg-headline').text();
+
+        // Obtenha o conteúdo do artigo
+        const content = $('.cnn-content__body').text();
+
+        return { title, content };
+      } catch (error) {
+        console.error(`Erro ao extrair o conteúdo do artigo: ${error}`);
+        return null;
+      }
+    }
+
+    // Função para realizar a pesquisa
+    async function searchArticles() {
+      // Faça a requisição à página de busca da CNN
+      fetch(`${base_url}/search/?q=${query}&from=${start_date}&to=${end_date}`)
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error(`Erro ao acessar a página de busca da CNN: ${response.status}`);
+          }
+        })
+        .then(html => {
+          // Utilize uma biblioteca de scraping como Cheerio para analisar o HTML
+          const $ = Cheerio.load(html);
+
+          // Obtenha os links dos artigos
+          const articleLinks = $('a.cd__headline').map((i, el) => $(el).attr('href')).get();
+
+          // Crie um elemento de lista para exibir os resultados
+          const resultsList = document.getElementById('search-results');
+          resultsList.innerHTML = '';
+
+          // Extraia o conteúdo de cada artigo e adicione à lista
+          articleLinks.forEach(async link => {
+            const fullUrl = `${base_url}${link}`;
+            const articleData = await extractArticleContent(fullUrl);
+
+            if (articleData) {
+              const listItem = document.createElement('li');
+              listItem.innerHTML = `
+                <h3><a href="${fullUrl}">${articleData.title}</a></h3>
+                <p>${articleData.content.substring(0, 200)}...</p>
+              `;
+              resultsList.appendChild(listItem);
+            }
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    // Inicie a pesquisa com os parâmetros padrão
+    searchArticles();
+  </script>
+</head>
+<body>
+  <h1>Resultados da pesquisa</h1>
+  <ul id="search-results"></ul>
+
+  <h2>Pesquisa Avançada</h2>
+  <form id="search-form">
+    <label for="query">Termo de pesquisa:</label>
+    <input type="text" id="query" value="climate change">
+    <br>
+    <label for="start-date">Data de início:</label>
+    <input type="date" id="start-date" value="2023-01-01">
+    <br>
+    <label for="end-date">Data de término:</label>
+    <input type="date" id="end-date" value="2023-03-31">
+    <br>
+    <button type="submit">Pesquisar</button>
+  </form>
+
+  <script>
+    const searchForm = document.getElementById('search-form');
+
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      // Obtenha os valores dos campos de entrada
+      query = document.getElementById('query').value;
+      start_date = document.getElementById('start-date').value.replace(/-/g, '');
+      end_date = document.getElementById('end-date').value.replace(/-/g, '');
+
+      // Execute a pesquisa com os novos parâmetros
+      searchArticles();
+    });
+  </script>
+</body>
+</html>
