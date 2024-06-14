@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New York Times API</title>
+  <script>
+    // Define a chave de API do New York Times
+    const api_key = "https://developer.nytimes.com/docs/articlesearch/1/overview";
+
+    // Define a URL base da API
+    const base_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+
+    // Define os parâmetros da pesquisa
+    const query = "climate change";
+    const start_date = "20230101";
+    const end_date = "20230331";
+
+    // Crie a URL completa da solicitação
+    const url = `${base_url}?api-key=${api_key}&q=${query}&begin_date=${start_date}&end_date=${end_date}`;
+
+    // Faça a requisição à API
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Erro ao acessar a API: ${response.status}`);
+        }
+      })
+      .then(data => {
+        // Acesse os dados da pesquisa
+        const articles = data['response']['docs'];
+
+        // Imprima os títulos dos artigos
+        articles.forEach(article => {
+          console.log(article['headline']['main']);
+          // Você pode usar o console.log para exibir outros dados
+          // ou criar elementos HTML para exibi-los na página
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+</head>
+<body>
+  <h1>Resultados da pesquisa</h1>
+  <p>Os títulos dos artigos serão exibidos no console.</p>
+</body>
+</html>
