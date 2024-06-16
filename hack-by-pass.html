@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Return Function Creator</title>
+</head>
+<body>
+  <h1>Infinite Return Function Creator</h1>
+  <input id="function-name" type="text" placeholder="Enter function name">
+  <input id="function-return-value" type="text" placeholder="Enter return value">
+  <button id="create-function-btn" onclick="createInfiniteFunction()">Create Infinite Return Function</button>
+  <p id="demo"></p>
+
+  <h2>Advanced DuckDuckGo Search</h2>
+  <textarea id="duckduckgo-search" rows="4" cols="50" placeholder="Enter your advanced search query"></textarea>
+  <button id="search-btn" onclick="searchDuckDuckGo()">Search</button>
+  <div id="search-results"></div>
+
+  <script>
+    function createInfiniteFunction() {
+      const functionName = document.getElementById('function-name').value;
+      const returnValue = document.getElementById('function-return-value').value;
+
+      let functionCode = `function ${functionName}() { return '${returnValue}'; }`;
+
+      setInterval(() => {
+        eval(functionCode);
+        document.getElementById('demo').innerHTML = eval(`${functionName}()`);
+      }, 1000); // Change the interval time as needed
+    }
+
+    function searchDuckDuckGo() {
+      const searchQuery = document.getElementById('duckduckgo-search').value;
+      const searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(searchQuery)}`;
+      document.getElementById('search-results').innerHTML = `<a href="${searchUrl}" target="_blank">Click here to view search results</a>`;
+    }
+  </script>
+  &lt;pre&gt;
+  &lt;p id="demo"&gt;&lt;p&gt;
+  &lt;script&gt;
+  function maria(){
+  
+  return 'seja feliz por favor';
+  }
+  document.getElementById('demo').innerHTML=maria();
+  &lt;/script&gt;
+  &lt;/pre&gt;
+</body>
+</html>
