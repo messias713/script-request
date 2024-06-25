@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplo de Função e Variável em JavaScript</title>
+</head>
+<body>
+<h1>Exemplo de Função e Variável em JavaScript</h1>
+
+<textarea id="codigo" rows="10" cols="50"></textarea><br>
+<button onclick="mostrarCodigo()">Mostrar Código e Chamar Função</button>
+
+<p id="resultado"></p>
+
+<script>
+function mostrarCodigo() {
+  var codigo = "function criarElemento() {\n";
+  codigo += "  const letras = 'Eu sou letra';\n";
+  codigo += "  document.getElementById('resultado').innerHTML = letras;\n";
+  codigo += "}\n";
+  codigo += "criarElemento();";
+  
+  document.getElementById("codigo").value = codigo;
+}
+</script>
+
+</body>
+</html>
+
