@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Frases Motivadoras</title>
+</head>
+<body>
+<h1>Gerador de Frases Motivadoras</h1>
+<textarea id="fraseUsuario" placeholder="Digite sua frase inspiradora"></textarea>
+<button onclick="gerarFrase()">Gerar Frase</button>
+<p id="frase"></p>
+
+<script>
+function gerarFrase() {
+  const fraseUsuario = document.getElementById('fraseUsuario').value;
+  
+  if (fraseUsuario.trim() === '') {
+    alert('Por favor, insira uma frase inspiradora antes de gerar!');
+    return;
+  }
+  
+  // Simulando a geração da frase inspiradora localmente
+  const frasesInsp = [
+    "Acredite em você mesmo e tudo será possível.",
+    "O sucesso nasce do querer, da determinação e persistência.",
+    "O que você pensa, você se torna. O que você sente, você atrai. O que você imagina, você cria.",
+    "Nada é impossível para um coração cheio de vontade.",
+    "A vida é um presente, e cada respiração é uma dádiva.",
+    "A persistência é o caminho do êxito.",
+    "Acredite, lute, conquiste, e acima de tudo, seja feliz.",
+    "O otimismo é a fé em ação. Nada se pode levar a efeito sem otimismo.",
+    "A vida é feita de escolhas. Quando você dá um passo à frente, inevitavelmente alguma coisa fica para trás.",
+    "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+    "Acredite que você pode, assim você já está no meio do caminho.",
+    "A vida é curta demais para não ser feliz.",
+    "A persistência realiza o impossível.",
+    "Acredite no seu potencial, mas nunca se esqueça de manter os pés no chão.",
+    "O segredo do sucesso é a constância do propósito.",
+    "A vida é feita de momentos. Aproveite cada um deles.",
+    "A força não vem da capacidade física, e sim de uma vontade indomável.",
+    "Acredite no poder dos seus sonhos e lute para torná-los realidade.",
+    "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+    "A vida é uma jornada, não um destino.",
+    "Acredite que você pode e você já está no meio do caminho.",
+    "A vida é cheia de obstáculos, mas cada um deles é uma oportunidade para crescer.",
+    "O sucesso é a consequência do esforço constante.",
+    "Acredite no seu potencial e não deixe que nada te impeça de alcançar seus objetivos.",
+    "A vida é uma dádiva, aproveite cada momento como se fosse o último.",
+    "A persistência é o caminho do êxito. Mantenha-se firme em seus objetivos.",
+    "Acredite na sua capacidade de superar desafios e alcançar seus sonhos.",
+    "O sucesso é a recompensa daqueles que não desistem diante das dificuldades.",
+    "A vida é feita de escolhas. Escolha ser feliz e lute por isso todos os dias.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não é acaso, é fruto de trabalho árduo e determinação.",
+    "A vida é uma jornada de aprendizado. Aproveite cada experiência para crescer.",
+    "Acredite em você mesmo, pois você é capaz de coisas incríveis.",
+    "O sucesso é a conquista daqueles que persistem mesmo diante das adversidades.",
+    "A vida é um presente precioso. Aproveite cada momento com gratidão.",
+    "A persistência é a chave para superar qualquer obstáculo.",
+    "Acredite no seu potencial e nunca duvide da sua capacidade de vencer.",
+    "O sucesso é a recompensa daqueles que não desistem diante das dificuldades.",
+    "A vida é feita de desafios, mas também de oportunidades. Aproveite-as.",
+    "Acredite nos seus sonhos e lute por eles com determinação.",
+    "O sucesso é a consequência do esforço e da dedicação.",
+    "A vida é uma jornada de descobertas. Esteja aberto para aprender e crescer.",
+    "Acredite na sua capacidade de superar obstáculos e alcançar seus objetivos.",
+    "O sucesso é a recompensa daqueles que persistem e não desistem.",
+    "A vida é feita de momentos. Aproveite cada um deles com intensidade.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não acontece por acaso, é fruto de trabalho e dedicação.",
+    "A vida é uma dádiva. Aproveite cada instante com gratidão e alegria.",
+    "A persistência é a chave para alcançar seus objetivos mais ambiciosos.",
+    "Acredite em você mesmo e no seu potencial para conquistar o que deseja.",
+    "O sucesso é a recompensa daqueles que persistem e não desistem diante das dificuldades.",
+    "A vida é feita de escolhas. Escolha ser feliz e lute por isso todos os dias.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não é acaso, é fruto de trabalho árduo e determinação.",
+    "A vida é uma jornada de aprendizado. Aproveite cada experiência para crescer.",
+    "Acredite em você mesmo, pois você é capaz de coisas incríveis.",
+    "O sucesso é a conquista daqueles que persistem mesmo diante das adversidades.",
+    "A vida é um presente precioso. Aproveite cada momento com gratidão.",
+    "A persistência é a chave para superar qualquer obstáculo.",
+    "Acredite no seu potencial e nunca duvide da sua capacidade de vencer.",
+    "O sucesso é a recompensa daqueles que não desistem diante das dificuldades.",
+    "A vida é feita de desafios, mas também de oportunidades. Aproveite-as.",
+    "Acredite nos seus sonhos e lute por eles com determinação.",
+    "O sucesso é a consequência do esforço e da dedicação.",
+    "A vida é uma jornada de descobertas. Esteja aberto para aprender e crescer.",
+    "Acredite na sua capacidade de superar obstáculos e alcançar seus objetivos.",
+    "O sucesso é a recompensa daqueles que persistem e não desistem.",
+    "A vida é feita de momentos. Aproveite cada um deles com intensidade.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não acontece por acaso, é fruto de trabalho e dedicação.",
+    "A vida é uma dádiva. Aproveite cada instante com gratidão e alegria.",
+    "A persistência é a chave para alcançar seus objetivos mais ambiciosos.",
+    "Acredite em você mesmo e no seu potencial para conquistar o que deseja.",
+    "O sucesso é a recompensa daqueles que persistem e não desistem diante das dificuldades.",
+    "A vida é feita de escolhas. Escolha ser feliz e lute por isso todos os dias.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não é acaso, é fruto de trabalho árduo e determinação.",
+    "A vida é uma jornada de aprendizado. Aproveite cada experiência para crescer.",
+    "Acredite em você mesmo, pois você é capaz de coisas incríveis.",
+    "O sucesso é a conquista daqueles que persistem mesmo diante das adversidades.",
+    "A vida é um presente precioso. Aproveite cada momento com gratidão.",
+    "A persistência é a chave para superar qualquer obstáculo.",
+    "Acredite no seu potencial e nunca duvide da sua capacidade de vencer.",
+    "O sucesso é a recompensa daqueles que não desistem diante das dificuldades.",
+    "A vida é feita de desafios, mas também de oportunidades. Aproveite-as.",
+    "Acredite nos seus sonhos e lute por eles com determinação.",
+    "O sucesso é a consequência do esforço e da dedicação.",
+    "A vida é uma jornada de descobertas. Esteja aberto para aprender e crescer.",
+    "Acredite na sua capacidade de superar obstáculos e alcançar seus objetivos.",
+    "O sucesso é a recompensa daqueles que persistem e não desistem.",
+    "A vida é feita de momentos. Aproveite cada um deles com intensidade.",
+    "Acredite no poder dos seus sonhos e trabalhe duro para realizá-los.",
+    "O sucesso não acontece por acaso, é fruto de trabalho e dedicação.",
+    "A vida é uma dádiva. Aproveite cada instante com gratidão e alegria.",
+    "A persistência é a chave para alcançar seus objetivos mais ambiciosos.",
+    "Acredite em você mesmo e no seu potencial para conquistar o que deseja."
+  ];
+  
+  const fraseAleatoria = frasesInsp[Math.floor(Math.random() * frasesInsp.length)];
+  
+  document.getElementById('frase').innerText = fraseAleatoria;
+}
+</script>
+</body>
+</html>
+
