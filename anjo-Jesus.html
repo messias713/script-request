@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palavras Divinas</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-image: url('https://media.tenor.com/gVVswV2anC8AAAAC/szentek-istenek-angyalok.gif');
+        background-size: cover;
+    }
+
+    .palavra {
+        position: absolute;
+        color: purple;
+        font-size: 24px;
+    }
+</style>
+</head>
+<body>
+<script>
+    const palavrasDivinas = ['Amor', 'Paz', 'Fé', 'Esperança', 'Gratidão', 'Harmonia','JESUS', 'MARIA', 'DEUS'];
+
+    function criarPalavra() {
+        const palavra = document.createElement('div');
+        palavra.classList.add('palavra');
+        palavra.innerText = palavrasDivinas[Math.floor(Math.random() * palavrasDivinas.length)];
+        palavra.style.left = Math.random() * window.innerWidth + 'px';
+        palavra.style.top = 0;
+
+        document.body.appendChild(palavra);
+
+        animarPalavra(palavra);
+    }
+
+    function animarPalavra(palavra) {
+        const velocidade = Math.random() * 4 + 2;
+        const angulo = Math.random() * 60 - 30;
+
+        const intervalo = setInterval(() => {
+            const topoAtual = parseFloat(palavra.style.top);
+            const esquerdaAtual = parseFloat(palavra.style.left);
+
+            palavra.style.top = topoAtual + velocidade + 'px';
+            palavra.style.left = esquerdaAtual + Math.sin(angulo * Math.PI / 180) + 'px';
+
+            if (topoAtual > window.innerHeight) {
+                clearInterval(intervalo);
+                palavra.remove();
+            }
+        }, 50);
+    }
+
+    setInterval(criarPalavra, 1000);
+</script>
+</body>
+</html>
+
