@@ -1,0 +1,47 @@
+<html>
+<meta charset="utf-8">
+<h1>may mail<br>Procurar info texte area<br>criar mail 23@gmail.com</h1>
+<form action="enviar_email.php" method="post">
+    <input type="text" name="nome" placeholder="Seu nome">
+    <input type="email" name="email" placeholder="Seu email">
+    <textarea name="mensagem" placeholder="Sua mensagem"></textarea>
+    <input type="submit" value="Enviar Email">
+</form>
+Este formulário tem campos para nome, email e mensagem. O evento submit do formulário envia os dados para o script enviar_email.php.
+
+Passo 2: Criar script PHP para receber email
+
+<?php
+    // Receber dados do formulário
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $mensagem = $_POST['mensagem'];
+
+    // Verificar se os campos estão preenchidos
+    if(empty($nome) || empty($email) || empty($mensagem)) {
+        echo "Por favor, preencha todos os campos.";
+        exit;
+    }
+
+    // Verificar se o email é válido
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Email inválido.";
+        exit;
+    }
+
+    // Enviar email para o servidor
+    $destinatario = "https://www.bcr.gob.sv/";//mestino mais 23@gmail.com
+    $assunto = "Mensagem de: $nome";
+    $mensagem_email = "$nome enviou a seguinte mensagem:\n\n$mensagem";
+    $headers = "From: $nome <$email>";
+    mail($destinatario, $assunto, $mensagem_email, $headers);
+
+    echo "Email enviada com sucesso!";
+?>
+Este script PHP recebe os dados do formulário, verifica se os campos estão preenchidos e se o email é válido, e then sends the email to a specified recipient.
+
+**Passo 3: Salvar o
+
+
+
+</html>
