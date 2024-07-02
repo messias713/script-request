@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poemas Aleatórios</title>
+</head>
+<style>
+body{
+background-image:url('https://media.tenor.com/vDtqjv47FsIAAAAC/book-school.gif');
+}
+h1{
+color:purple;
+}
+</style>
+<body>
+    <h1>Poemas Aleatórios do Livro</h1>
+    <div id="poem"></div>
+<script>
+    const poems = [
+        "Poema 1<br>Brinca meu amor,<br>verdade em sonho,<br>destino realizar,<br>que espiritualidade em sonho de amar!",
+        "Poema 2<br> Simplismente Maria,<br>Que verdade mãe,<br>inspirada em acontecer, <br>Vida só é vida,<br>quando existe fé para viver.",
+        "Poema 3<br>Tudo em redenção.<br>Palavras do criador, a verdade escreve luz,<br>Perdão e paz, ditam amor",
+        "Poema 4<br>Que seja o assim ser<br>paisagem no acontecer,<br>poema em tudo,<br>quando temos de criar.<br>Formamos no simples.<br>A serenidade de amar.",
+        "Poema 5<br>Que brilho em brilhar<br>dintinção!<br>Amar é luz vida do coração.",
+        "Poema 6<br>Entre todos,<br>anunciar.<br>Que seja no eterno<br>a realidade do amar!",
+        "Poema 7<br>Vamos abraçar<br>este tempo em união.<br>Perdizendo divindade,<br>amor simples unidade.",
+        "Poema 8<br>Da brincadeira,<br>sobra brincando,<br>do brincar a infância.<br>Sim há paz,<br>No mundo tolerãncia.",
+        "Poema 9<br>Todos temos em ir,<br>vir novo. O item,<br>que agregar,<br>forma de tudo.<br>Amar, amar.",
+        "Poema 10<br>Que interesse em completar<br>sempre que há sonho.<br>Comparece em mestria.<br>Rico de barriga cheia,<br>pobre de barriga vazia."
+    ];
+
+    function getRandomPoem() {
+        return poems[Math.floor(Math.random() * poems.length)];
+    }
+
+    function displayRandomPoem() {
+        const poemElement = document.getElementById("poem");
+        poemElement.innerHTML = `<p style="color:red;">${getRandomPoem()}</p>`;
+    }
+
+    // Exibir um poema aleatório ao carregar a página
+    displayRandomPoem();
+
+    // Exibir um novo poema aleatório a cada 5 segundos
+    setInterval(() => {
+        displayRandomPoem();
+    }, 5000);
+</script>
+</body>
+</html>
