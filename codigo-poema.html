@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poemas em Cartum</title>
+    <style>
+        #cartum {
+            position: relative;
+        }
+
+        #cartum img {
+            width: 100%;
+            filter: grayscale(100%);
+        }
+
+        #cartum .poema {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1;
+            white-space: pre-line;
+        }
+
+        #cartum .poema span {
+            position: relative;
+            animation: derramar 5s linear infinite;
+        }
+
+        @keyframes derramar {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Poemas em Cartum Preto e Branco</h1>
+    <h2>Escreva o seu poema e adicione há foto!</h2>
+    <textarea id="poema" rows="10" cols="50" placeholder="Insira seu poema aqui"></textarea>
+    <button onclick="transformarEmCartum()">Transformar em Cartum</button>
+    <div id="cartum">
+        <img src="https://lh3.googleusercontent.com/blogger_img_proxy/AEn0k_vpBejOuJ67-VW4QKckExBI2X3i1tfMVtw8NM1xGI6BKDpxZLleWEpsZIhDIsZTNWebCiZXuPuh2ONmKgq9bledHfFQmN1ynCWGXYT9doyVQuG1sj1Tjoza6S1S=w945-h600-p-k-no-nu">
+        <div id="poema" class="poema"></div>
+    </div>
+
+    <script>
+        function transformarEmCartum() {
+            const poema = document.getElementById('poema').value;
+            const cartum = poema.toUpperCase(); // Aqui você pode adicionar a lógica para transformar o poema em cartum
+
+            const poemaDiv = document.querySelector('.poema');
+            poemaDiv.innerHTML = '';
+            const palavras = cartum.split(' ');
+            palavras.forEach((palavra, index) => {
+                const span = document.createElement('span');
+                span.innerText = palavra + ' ';
+                poemaDiv.appendChild(span);
+            });
+        }
+    </script>
+</body>
+</html>
