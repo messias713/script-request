@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poema23</title>
+<style>
+.poema23 {
+    display: inline-block;
+    font-size: 24px;
+    margin-right: 5px;
+}
+</style>
+</head>
+<body>
+
+<div id="poema23"></div>
+<p id="demo"></p>
+<script>
+const colors = ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff', '#4b0082', '#ee82ee', '#a52a2a', '#808080', '#000000'];
+
+setInterval(() => {
+    document.getElementById('poema23').innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+        const span = document.createElement('span');
+        span.textContent = 'poema23 ';
+        span.style.color = colors[i];
+        document.getElementById('poema23').appendChild(span);
+    }
+}, 1000);
+
+const verso = 'Poema23, uma ode à vida e ao amor,\nque seja flor.\nverdade iluminada\npara conquistar a espiritualidade acrescentada.\nDivinamente abençoada!<br><img src="https://media.tenor.com/9RCYxLpAMc4AAAAC/nataliazzzz.gif" width="50%">';
+document.getElementById('demo').innerHTML = verso;
+</script>
+
+</body>
+</html>
