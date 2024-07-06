@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>Infinitely Looping Link Server</title>
+</head>
+<body>
+
+<h1>Pesquisar Emails em Sites da Web</h1>
+<h2>Forçar pesquisa no interior do site exemplo=\/\/.tables7index</h2>
+
+
+
+
+<form action="https://bing.com" method="get" target="_blank">
+  <input type="hidden" name="sites" value="www.google.com">
+  <input type="text" name="q" placeholder="Pesquisar no site">
+  <input type="submit" value="Pesquisar">
+</form>
+<h3>IA COPILOT microsoft</h3>
+<script>
+// Função para procurar emails na página
+const searchEmails = async () => {
+  // Sua lógica de pesquisa de emails aqui
+};
+
+// Chama a função para procurar emails
+searchEmails();
+</script>
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+
+    ws.onmessage = (event) => {
+      console.log(' Received message:', event.data);
+
+      // Abrir o link infinitamente
+      window.location.href = event.data;
+    };
+    const WebSocketServer = require('ws').Server;
+
+const wss = new WebSocketServer({ port: 8080 });
+
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+
+  // Enviar mensagem infinitamente
+  setInterval(() => {
+    ws.send('https://livrosaartedoespirito.blogspot.com/'); // altere para o link que você deseja abertura
+  }, 1000);
+});
+
+
+  </script>
+</body>
+</html>
+
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello World!');
+});
+
+const port = 8080;
+
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
