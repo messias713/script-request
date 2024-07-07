@@ -1,0 +1,37 @@
+<html>
+<meta charset="utf-8">
+
+<h1>Aploud de files</h1>
+<form id="formulario" method="post" enctype="multipart/form-data">
+    <input type="text" name="campo1" value="hello" />
+    <input type="text" name="campo2" value="world" />
+    <input name="arquivo" type="file" />
+    <button>Enviar</button>
+</form>
+<script>
+$("#formulario").submit(function() {
+    var formData = new FormData(this);
+    $.ajax({
+        url: window.location.pathname,
+        type: 'POST',
+        data: formData,
+        success: function(data) {
+            alert(data); // Exibe a resposta do servidor (opcional)
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function() {
+            // Custom XMLHttpRequest para capturar o progresso do upload
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) {
+                myXhr.upload.addEventListener('progress', function() {
+                    /* Faça algo durante o progresso do upload */
+                }, false);
+            }
+            return myXhr;
+        }
+    });
+});
+</script>
+</html>
